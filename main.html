@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emma Claudia Nicolai - Aerospace Engineering Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #40826D;
+            --secondary: #2D5F52;
+            --accent: #5DBEA3;
+            --dark: #0A0A0A;
+            --light: #FFFFFF;
+            --gray: #B0B0B0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'IBM Plex Mono', monospace;
+            background: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated grid background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(64, 130, 109, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(64, 130, 109, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(50px, 50px);
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        header {
+            padding: 3rem 0;
+            border-bottom: 2px solid var(--primary);
+            position: relative;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            animation: headerLine 2s ease-out forwards;
+        }
+
+        @keyframes headerLine {
+            to {
+                width: 100%;
+            }
+        }
+
+        h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 4.5rem;
+            letter-spacing: 0.1em;
+            color: var(--light);
+            margin-bottom: 0.5rem;
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
+            font-weight: 300;
+            animation: slideInLeft 0.8s ease-out 0.2s backwards;
+        }
+
+        .contact-links {
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 2rem;
+            animation: slideInLeft 0.8s ease-out 0.4s backwards;
+        }
+
+        .contact-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .contact-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .contact-links a:hover {
+            color: var(--accent);
+        }
+
+        .contact-links a:hover::after {
+            width: 100%;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Navigation */
+        nav {
+            padding: 2rem 0;
+            position: sticky;
+            top: 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 1px solid rgba(64, 130, 109, 0.2);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 3rem;
+            justify-content: center;
+        }
+
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.15em;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        nav a::before {
+            content: '[';
+            opacity: 0;
+            transform: translateX(10px);
+            transition: all 0.3s;
+        }
+
+        nav a::after {
+            content: ']';
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        nav a:hover::before,
+        nav a:hover::after {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 0;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 3rem;
+            letter-spacing: 0.1em;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60%;
+            height: 3px;
+            background: var(--accent);
+        }
+
+        /* About Section */
+        #about {
+            background: linear-gradient(135deg, rgba(45, 95, 82, 0.1) 0%, rgba(64, 130, 109, 0.05) 100%);
+            padding: 5rem 0;
+        }
+
+        .about-content {
+            max-width: 800px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--light);
+        }
+
+        .about-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(64, 130, 109, 0.3);
+            padding: 2rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(64, 130, 109, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .project-card:hover::before {
+            left: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(64, 130, 109, 0.2);
+        }
+
+        .project-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem;
+            color: var(--primary);
+            opacity: 0.3;
+            line-height: 1;
+        }
+
+        .project-card h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin: 1rem 0;
+            letter-spacing: 0.05em;
+        }
+
+        .project-card p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background: rgba(93, 190, 163, 0.1);
+            color: var(--accent);
+            padding: 0.3rem 0.8rem;
+            font-size: 0.75rem;
+            border: 1px solid rgba(93, 190, 163, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+        }
+
+        .project-link {
+            display: inline-block;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--primary);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            transition: left 0.3s;
+            z-index: -1;
+        }
+
+        .project-link:hover {
+            color: var(--dark);
+            border-color: var(--accent);
+        }
+
+        .project-link:hover::before {
+            left: 0;
+        }
+
+        .project-link::after {
+            content: ' →';
+        }
+
+        /* Achievements */
+        .achievement-list {
+            max-width: 900px;
+            margin: 2rem 0;
+        }
+
+        .achievement-item {
+            background: rgba(255, 255, 255, 0.02);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .achievement-item::before {
+            content: '▶';
+            position: absolute;
+            left: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary);
+            font-size: 0.8rem;
+        }
+
+        .achievement-item:hover {
+            background: rgba(64, 130, 109, 0.05);
+            border-left-color: var(--accent);
+            transform: translateX(10px);
+        }
+
+        .achievement-item h4 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.4rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .achievement-date {
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .achievement-item p {
+            color: var(--light);
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 3rem 0;
+            text-align: center;
+            border-top: 2px solid var(--primary);
+            margin-top: 5rem;
+        }
+
+        footer p {
+            color: var(--gray);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Emma Claudia Nicolai</h1>
+            <p class="subtitle">Aerospace Engineering | Orbital Dynamics | Sustainable Space Systems</p>
+            <div class="contact-links">
+                <a href="mailto:emmaclaudianic@gmail.com">emmaclaudianic@gmail.com</a>
+                <a href="https://www.linkedin.com/in/emma-claudia-nicolai" target="_blank">LinkedIn</a>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section id="about">
+            <div class="container">
+                <h2>About Me</h2>
+                <div class="about-content fade-in">
+                    <p>
+                     I'm an aerospace engineer, working on my Master's in Aeronautics and Astronautics at Stanford after my Bachelor's in Aerospace Engineering at Queen Mary University of London. Over the course of my studies, I've focused on orbital dynamics, drawn to the precision and logic behind how spacecraft move and behave in orbit. Alongside the technical side, I've taken on leadership roles in multiple teams, where I've learned that strong engineering is as much about people and direction as it is about equations.
+                    </p>
+                    <p>
+                    My work sits at the intersection of technical rigour and long-term thinking. 
+                    I'm interested not only in how we put spacecraft into orbit, but whether we 
+                    should — and how we do it responsibly. Space sustainability and policy matter 
+                     just as much to me as control laws and propagation models. If we're going to 
+                     build in orbit, we need to clean up after ourselves too.
+                    </p>
+                    <p>
+                    Right now, I'm focused on orbital dynamics, debris mitigation, and in-space 
+                    manufacturing concepts that aim to close the loop on materials in orbit. 
+                    Ultimately, I want to contribute to a future where space exploration is 
+                   ambitious, technically excellent, and sustainable by design.
+                </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="container">
+                <h2>Projects</h2>
+                <div class="projects-grid">
+
+                    <div class="project-card fade-in">
+                        <div class="project-number">01</div>
+                        <h3>Swarm Satellite Constellation Optimisation</h3>
+                        <p>
+                            Modelled the orbital mechanics of swarm satellite constellations at Satellite Applications Catapult. 
+                            Used numerical propagation and STK to analyse formation strategies, relative motion, and long-term 
+                            stability.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Orbital Dynamics</span>
+                            <span class="tech-tag">STK</span>
+                            <span class="tech-tag">Numerical Analysis</span>
+                            <span class="tech-tag">Constellation Design</span>
+                        </div>
+                        <a href="project-swarm.html" class="project-link">View Details</a>
+                    </div>
+
+                    <div class="project-card fade-in">
+                        <div class="project-number">02</div>
+                        <h3>In-Space Debris Recapture & Remanufacture</h3>
+                        <p>
+                            Investigated the recapture and remanufacture of high-speed orbital debris for in-space manufacturing. 
+                            Conducted thermal analysis of a recycling system in vacuum conditions, benchmarking and optimising 
+                            the MAMBA process.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Thermal Analysis</span>
+                            <span class="tech-tag">In-Space Manufacturing</span>
+                            <span class="tech-tag">Material Properties</span>
+                            <span class="tech-tag">Space Sustainability</span>
+                        </div>
+                        <a href="project-debris.html" class="project-link">View Details</a>
+                    </div>
+
+                    <div class="project-card fade-in">
+                        <div class="project-number">03</div>
+                        <h3>Hybrid Aircraft Propeller Optimisation</h3>
+                        <p>
+                            Conducting aerodynamic research on propeller optimisation for a hybrid aircraft as part of an EU 
+                            sustainable aviation initiative. Using StarCCM+ to analyse flow behaviour and improve efficiency 
+                            across operating conditions.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">StarCCM+</span>
+                            <span class="tech-tag">CFD</span>
+                            <span class="tech-tag">Aerodynamics</span>
+                            <span class="tech-tag">Sustainable Aviation</span>
+                        </div>
+                        <a href="project-propeller.html" class="project-link">View Details</a>
+                    </div>
+
+                    <div class="project-card fade-in">
+                        <div class="project-number">04</div>
+                        <h3>Satellite Design Competition – 3U CubeSat</h3>
+                        <p>
+                            Project Lead for a team of 15 designing and building a 3U CubeSat for wildfire detection. 
+                            Led the team through Critical Design Review, receiving Best CDR and Best Presentation awards.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">CubeSat Design</span>
+                            <span class="tech-tag">Payload CAD</span>
+                            <span class="tech-tag">Systems Engineering</span>
+                            <span class="tech-tag">Mission Design</span>
+                        </div>
+                        <a href="project-cubesat.html" class="project-link">View Details</a>
+                    </div>
+
+                    <div class="project-card fade-in">
+                        <div class="project-number">05</div>
+                        <h3>Olympus Rover Trial – Mechanical Design</h3>
+                        <p>
+                            Project Lead for a 10-person rover team, focusing on mechanical architecture and CAD design. 
+                            Developed structural components and mechanical layouts to meet competition constraints while 
+                            maintaining robustness and manufacturability.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Mechanical Design</span>
+                            <span class="tech-tag">CAD</span>
+                            <span class="tech-tag">Structural Design</span>
+                            <span class="tech-tag">Team Leadership</span>
+                        </div>
+                        <a href="project-rover.html" class="project-link">View Details</a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="achievements">
+            <div class="container">
+                <h2>Achievements</h2>
+                <div class="achievement-list">
+
+                    <div class="achievement-item fade-in">
+                        <span class="achievement-date">2025</span>
+                        <h4>Emergent Ventures Grant Awardee</h4>
+                        <p>
+                            Awarded an Emergent Ventures grant in recognition of work in satellite engineering 
+                            and space sustainability, supporting continued research and career development 
+                            in responsible space technologies.
+                        </p>
+                    </div>
+
+                    <div class="achievement-item fade-in">
+                        <span class="achievement-date">2024</span>
+                        <h4>UKSEDS – Student of the Year</h4>
+                        <p>
+                            National award recognising outstanding contribution to the UK student space community, 
+                            demonstrating leadership, initiative, and sustained impact through the founding and 
+                            growth of QMSEDS.
+                        </p>
+                    </div>
+
+                    <div class="achievement-item fade-in">
+                        <span class="achievement-date">2024</span>
+                        <h4>UKSEDS – New/Most Improved Branch</h4>
+                        <p>
+                            Awarded to QMSEDS for building one of the most active and engaged UKSEDS branches 
+                            in the country, establishing a strong foundation for long-term student involvement 
+                            in space engineering projects.
+                        </p>
+                    </div>
+
+                    <div class="achievement-item fade-in">
+                        <span class="achievement-date">2023</span>
+                        <h4>QMUL Get Active Award</h4>
+                        <p>
+                            Recognised for developing and leading effective participation sessions as President 
+                            of the Women's Volleyball Team, increasing engagement and competitive performance.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Emma Claudia Nicolai. All rights reserved.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">Built with passion for engineering excellence</p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
